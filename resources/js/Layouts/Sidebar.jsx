@@ -151,7 +151,7 @@ const Sidebar = ({ children }) => {
 
                             {/* Logo Link */}
                             <Link href={route('Dashboard')} className="block flex-shrink-0 lg:hidden">
-                                <img src="./assets/images/book.png" alt="Logo" className="w-15" />
+                                <img src="/assets/images/book.png" alt="Logo" className="w-15" />
                             </Link>
                         </div>
                         <div className="hidden sm:block">
