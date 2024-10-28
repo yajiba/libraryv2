@@ -52,9 +52,12 @@ export default function StudentList({ departments }) {
             }
         }
     };
+    const fieldsToSearch = ['first_name', 'last_name', 'middle_name', 'email'];
 
     const filteredData = data.filter(item =>
-        item.first_name.toLowerCase().includes(searchTerm.toLowerCase())
+        fieldsToSearch.some(field =>
+            item[field] && item[field].toLowerCase().includes(searchTerm.toLowerCase())
+        )
     );
 
     const columns = [
@@ -89,14 +92,14 @@ export default function StudentList({ departments }) {
                             <div className='flex justify-between'>
                                 <input
                                     type="text"
-                                    className='py-6 border border-gray-300 rounded'
+                                    className=' rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary'
                                     placeholder="Search student"
                                     value={searchTerm}
                                     onChange={e => setSearchTerm(e.target.value)}
                                     style={{ marginBottom: '10px', padding: '5px' }}
                                 />
                                 <button
-                                    className="bg-deepBlue text-white font-bold  px-4 rounded"
+                                    className="inline-flex items-center justify-center rounded-md bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                                     onClick={toggleModal}
                                 >
                                     <i className="mdi mdi-account-plus menu-icon"></i> Add Student
@@ -119,6 +122,7 @@ export default function StudentList({ departments }) {
                                 <p>Loading...</p>
                             ) : (
                                 <DataTable
+                                    className='w-full table-auto'
                                     columns={columns}
                                     data={filteredData}
                                     pagination

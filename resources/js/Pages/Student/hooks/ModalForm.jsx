@@ -51,7 +51,7 @@ const ModalForm = ({
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Form Fields */}
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2">
+                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                                         First Name
                                     </label>
                                     <input
@@ -59,13 +59,13 @@ const ModalForm = ({
                                         name="first_name"
                                         value={formData.first_name}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         placeholder="ex. Juan"
                                         required
                                     />
                                 </div>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2">
+                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                                         Last Name
                                     </label>
                                     <input
@@ -73,13 +73,13 @@ const ModalForm = ({
                                         name="last_name"
                                         value={formData.last_name}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         placeholder="ex. Dela Cruz"
                                         required
                                     />
                                 </div>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2">
+                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                                         Middle Name
                                     </label>
                                     <input
@@ -87,12 +87,12 @@ const ModalForm = ({
                                         name="middle_name"
                                         value={formData.middle_name}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         placeholder="ex. P."
                                     />
                                 </div>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2">
+                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                                         Email
                                     </label>
                                     <input
@@ -100,20 +100,20 @@ const ModalForm = ({
                                         name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         placeholder="ex. juandela@example.com"
                                         required
                                     />
                                 </div>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2">
+                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                                         Department
                                     </label>
                                     <select
                                         name="department_id"
                                         value={formData.department_id}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         required
                                     >
                                         <option value="">Select a department</option>
@@ -125,7 +125,7 @@ const ModalForm = ({
                                     </select>
                                 </div>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2">
+                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                                         Date of Birth
                                     </label>
                                     <input
@@ -133,19 +133,19 @@ const ModalForm = ({
                                         name="date_of_birth"
                                         value={formData.date_of_birth}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         required
                                     />
                                 </div>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2">
+                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                                         Gender
                                     </label>
                                     <select
                                         name="gender"
                                         value={formData.gender}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         required
                                     >
                                         <option value="">Select Gender</option>
@@ -155,7 +155,7 @@ const ModalForm = ({
                                     </select>
                                 </div>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2">
+                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                                         Address
                                     </label>
                                     <input
@@ -163,12 +163,12 @@ const ModalForm = ({
                                         name="address"
                                         value={formData.address}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         placeholder="ex. Barangay 1, City"
                                     />
                                 </div>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2">
+                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                                         Mobile Number
                                     </label>
                                     <input
@@ -176,13 +176,13 @@ const ModalForm = ({
                                         name="mobile_number"
                                         value={formData.mobile_number}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         placeholder="ex. 09123456789"
                                     />
                                 </div>
                             </div>
                             <div className="flex justify-end">
-                                <button type="submit" className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                                <button type="submit" className="inline-flex items-center justify-center rounded-md bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
                                     Submit
                                 </button>
                             </div>
