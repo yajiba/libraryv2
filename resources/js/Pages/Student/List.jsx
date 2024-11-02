@@ -85,7 +85,7 @@ export default function StudentList({ departments }) {
     return (
         <AuthenticatedLayout>
             <Head title="Students" />
-            <div className="py-8">
+            <div className="">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
@@ -99,7 +99,7 @@ export default function StudentList({ departments }) {
                                     style={{ marginBottom: '10px', padding: '5px' }}
                                 />
                                 <button
-                                    className="inline-flex items-center justify-center rounded-md bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                                    className="inline-flex items-center justify-center rounded-md bg-primary px-2 py-2 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                                     onClick={toggleModal}
                                 >
                                     <i className="mdi mdi-account-plus menu-icon"></i> Add Student

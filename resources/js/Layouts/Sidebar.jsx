@@ -15,7 +15,7 @@ const Sidebar = ({ children }) => {
     const routeNames = {
         '/dashboard': 'Dashboard',
         '/students/list': 'Students',
-      
+
         // Add other routes as needed
     };
 
@@ -137,14 +137,14 @@ const Sidebar = ({ children }) => {
                                             className={`relative left-0 top-0 my-1 block h-0.5 rounded-sm bg-black dark:bg-white transition-all duration-200 ease-in-out delay-200 ${!sidebarToggle ? '!w-full delay-500' : 'w-0'}`}
                                         ></span>
                                     </span>
-                                    <span className="absolute right-0 h-full w-full rotate-45">
+                                   {/*  <span className="absolute right-0 h-full w-full rotate-45">
                                         <span
                                             className={`absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black dark:bg-white transition-all duration-200 ease-in-out ${!sidebarToggle ? 'h-0 delay-0' : 'h-full delay-300'}`}
                                         ></span>
                                         <span
                                             className={`absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black dark:bg-white transition-all duration-200 ease-in-out delay-400 ${!sidebarToggle ? 'h-0 delay-200' : 'h-full'}`}
                                         ></span>
-                                    </span>
+                                    </span> */}
                                 </span>
                             </button>
                             {/* Hamburger Toggle Button */}
