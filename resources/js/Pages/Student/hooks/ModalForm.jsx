@@ -37,7 +37,7 @@ const ModalForm = ({
                         )}
                         {/* Modal Header */}
                         <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-semibold">Submit Form</h2>
+                            <h2 className="text-xl font-semibold">Student Form</h2>
                             <button
                                 className="text-gray-500 hover:text-gray-700"
                                 onClick={toggleModal}
@@ -178,11 +178,12 @@ const ModalForm = ({
                                         onChange={handleInputChange}
                                         className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                         placeholder="ex. 09123456789"
+                                        required
                                     />
                                 </div>
                             </div>
                             <div className="flex justify-end">
-                                <button type="submit" className="inline-flex items-center justify-center rounded-md bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
+                                <button type="submit" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
                                     Submit
                                 </button>
                             </div>

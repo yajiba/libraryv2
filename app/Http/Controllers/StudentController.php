@@ -37,17 +37,17 @@ class StudentController extends Controller
         ]);
         $data = $request->all();
         $data['status'] = 1; // Set default status
-    
+
         // Create the student record
         $insert = Student::create($data);
         if($insert) {
             return response()->json(['status'=> 'success', 'message' => 'Successfully Added Student!'], 200);
         }else {
             return response()->json(['status'=> 'eroor', 'message' => 'Successfully Added Student!'], 422);
-       
+
         }
 
-       
+
     }
-    
+
 }

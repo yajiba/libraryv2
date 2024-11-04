@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import DataTable from 'react-data-table-component';
 import useFetchData from './hooks/useFetchData';
 import useForm from './hooks/useForm';
-import useAlert from './hooks/useAlert';
+import useAlert from '@/Components/Alert';
 import axios from 'axios';
 import ModalForm from './hooks/ModalForm';
 
@@ -37,7 +37,9 @@ export default function StudentList({ departments }) {
             await axios.post('/students/record', formData);
             fetchData(); // Refetch data after submission
             displayAlert('Student successfully added!', 'success');
-            toggleModal(); // Close modal
+            setTimeout(() => {
+                toggleModal(); // Close modal
+            }, 2000);
             resetForm();
         } catch (error) {
             if (error.response && error.response.data) {
@@ -99,7 +101,7 @@ export default function StudentList({ departments }) {
                                     style={{ marginBottom: '10px', padding: '5px' }}
                                 />
                                 <button
-                                    className="inline-flex items-center justify-center rounded-md bg-primary px-2 py-2 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                                    className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-2 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                                     onClick={toggleModal}
                                 >
                                     <i className="mdi mdi-account-plus menu-icon"></i> Add Student

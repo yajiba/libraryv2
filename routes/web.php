@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/students/list', [StudentController::class, 'list'])->name('Students');
     Route::get('/students/datatable', [StudentController::class, 'student_datatable']);
     Route::post('/students/record', [StudentController::class, 'store']);
+
 });
 
 require __DIR__.'/auth.php';
