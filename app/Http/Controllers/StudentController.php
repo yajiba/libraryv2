@@ -43,7 +43,7 @@ class StudentController extends Controller
         if($insert) {
             return response()->json(['status'=> 'success', 'message' => 'Successfully Added Student!'], 200);
         }else {
-            return response()->json(['status'=> 'eroor', 'message' => 'Successfully Added Student!'], 422);
+            return response()->json(['status'=> 'error', 'message' => 'Successfully Added Student!'], 422);
 
         }
 

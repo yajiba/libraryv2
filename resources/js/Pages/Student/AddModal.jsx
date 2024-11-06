@@ -1,6 +1,7 @@
 import React from 'react';
+import Alerts from '@/Components/Alerts';
 
-const ModalForm = ({
+const AddModal = ({
     isOpen,
     toggleModal,
     handleSubmit,
@@ -18,23 +19,11 @@ const ModalForm = ({
             {isOpen && (
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center modals">
                     <div className="bg-white rounded-lg shadow-lg p-6 w-8/12">
-                        {showAlert && (
-                            <div className={`border px-4 py-3 rounded relative ${bg}`}>
-                                <span className="block sm:inline">{msg}</span>
-                                <button
-                                    onClick={() => displayAlert('', '')}
-                                    className="absolute top-0 bottom-0 right-0 px-4 py-3"
-                                >
-                                    <svg
-                                        className={`fill-current h-6 w-6 ${bg}`}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path d="M14.348 5.652a1 1 0 00-1.414 0L10 8.586 7.066 5.652a1 1 0 10-1.414 1.414l3.536 3.536-3.536 3.536a1 1 0 101.414 1.414L10 11.414l2.934 2.934a1 1 0 001.414-1.414l-3.536-3.536 3.536-3.536a1 1 0 000-1.414z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        )}
+                        <Alerts
+                        showAlert={showAlert}
+                        msg={msg}
+                        bg={bg}
+                        />
                         {/* Modal Header */}
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-semibold">Student Form</h2>
@@ -195,4 +184,4 @@ const ModalForm = ({
     );
 };
 
-export default ModalForm;
+export default AddModal;

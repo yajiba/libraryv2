@@ -2,26 +2,14 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import React, { useState } from 'react';
 import DataTable from 'react-data-table-component';
-import useFetchData from './hooks/useFetchData';
-import useForm from './hooks/useForm';
-import useAlert from '@/Components/Alert';
-import axios from 'axios';
-import ModalForm from './hooks/ModalForm';
+import useFetchData from '@/hooks/useFetchData';
+import useAlert from '@/hooks/useAlert';
+import useSubmit from '@/hooks/useSubmit';
+import AddModal from './AddModal';
 
 export default function StudentList({ departments }) {
-    const { data, loading, fetchData } = useFetchData();
+    const { data, loading, fetchData } = useFetchData('/students/datatable');
     const [searchTerm, setSearchTerm] = useState('');
-    const { formData, handleInputChange, resetForm } = useForm({
-        first_name: '',
-        last_name: '',
-        middle_name: '',
-        email: '',
-        department_id: '',
-        date_of_birth: '',
-        gender: '',
-        address: '',
-        mobile_number: '',
-    });
     const { showAlert, msg, bg, displayAlert } = useAlert();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -30,30 +18,9 @@ export default function StudentList({ departments }) {
         if (isOpen) resetForm(); // Reset form on modal close
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // Initialize the useSubmit hook
+    const { formData, handleSubmit, handleChange: handleInputChange } = useSubmit(fetchData, toggleModal, displayAlert, '/students/record');
 
-        try {
-            await axios.post('/students/record', formData);
-            fetchData(); // Refetch data after submission
-            displayAlert('Student successfully added!', 'success');
-            setTimeout(() => {
-                toggleModal(); // Close modal
-            }, 2000);
-            resetForm();
-        } catch (error) {
-            if (error.response && error.response.data) {
-                const errors = Object.values(error.response.data)
-                    .flat()
-                    .filter(message => typeof message === 'string') // Ensure we're only including strings
-                    .join('\n'); // Join all messages with newline
-
-                displayAlert(errors, 'error');
-            } else {
-                displayAlert('An unexpected error occurred', 'error');
-            }
-        }
-    };
     const fieldsToSearch = ['first_name', 'last_name', 'middle_name', 'email'];
 
     const filteredData = data.filter(item =>
@@ -107,7 +74,7 @@ export default function StudentList({ departments }) {
                                     <i className="mdi mdi-account-plus menu-icon"></i> Add Student
                                 </button>
                             </div>
-                            <ModalForm
+                            <AddModal
                                 isOpen={isOpen}
                                 toggleModal={toggleModal}
                                 handleSubmit={handleSubmit}
