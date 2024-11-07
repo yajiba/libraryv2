@@ -1,7 +1,7 @@
 import React from 'react';
 import Alerts from '@/Components/Alerts';
 
-const AddModal = ({
+const UpdateModal = ({
     isOpen,
     toggleModal,
     handleSubmit,
@@ -25,7 +25,7 @@ const AddModal = ({
                         />
                         {/* Modal Header */}
                         <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-semibold">Student Form</h2>
+                            <h2 className="text-xl font-semibold">Update Student Form</h2>
                             <button
                                 className="text-gray-500 hover:text-gray-700"
                                 onClick={toggleModal}
@@ -172,7 +172,7 @@ const AddModal = ({
                             </div>
                             <div className="flex justify-end">
                                 <button type="submit" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
-                                    Submit
+                                    Update
                                 </button>
                             </div>
                         </form>
@@ -183,4 +183,4 @@ const AddModal = ({
     );
 };
 
-export default AddModal;
+export default UpdateModal;

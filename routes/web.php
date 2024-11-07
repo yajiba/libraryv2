@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/students', [StudentController::class, 'list'])->name('Students');
     Route::get('/students/datatable', [StudentController::class, 'student_datatable']);
     Route::post('/students/record', [StudentController::class, 'store']);
-
+    Route::put('/students/{id}/update', [StudentController::class, 'update']);
     Route::get('/departments', [DepartmentController::class, 'list'])->name('Departments');
 });
 
