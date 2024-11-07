@@ -11,13 +11,6 @@ const useSubmit = (fetchData, toggleModal, displayAlert, url, method = 'POST') =
             [name]: value,
         }));
     };
-    const handleUpdateChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
 
     const resetForm = () => {
         setFormData({});
@@ -66,7 +59,6 @@ const useSubmit = (fetchData, toggleModal, displayAlert, url, method = 'POST') =
         formData,
         setFormData,
         handleChange,
-        handleUpdateChange,
         handleSubmit,
         resetForm,
     };

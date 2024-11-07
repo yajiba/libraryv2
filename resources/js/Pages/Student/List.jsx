@@ -27,7 +27,7 @@ export default function StudentList({ departments }) {
     const { formData, handleSubmit, handleChange: handleInputChange } = useSubmit(fetchData, toggleAddModal, displayAlert, '/students/record', "POST");
     // For Update
    const updateUrl = selectedStudent ? `/students/${selectedStudent.id}/update` : '';
-    const { formData: updateFormData, setFormData: setUpdateFormData, handleSubmit: handleUpdateSubmit, handleUpdateChange: handleUpdateInputChange } = useSubmit(
+    const { formData: updateFormData, setFormData: setUpdateFormData, handleSubmit: handleUpdateSubmit, handleChange: handleUpdateInputChange } = useSubmit(
         fetchData,
         toggleUpdateModal,
         displayAlert,
@@ -146,7 +146,7 @@ export default function StudentList({ departments }) {
 
 
                             {loading ? (
-                                <p>Loading...</p>
+                                <p className='flex justify-center'>Loading...</p>
                             ) : (
                                 <DataTable
                                     className='w-full table-auto'
