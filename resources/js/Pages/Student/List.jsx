@@ -7,7 +7,7 @@ import useAlert from '@/hooks/useAlert';
 import useSubmit from '@/hooks/useSubmit';
 import AddModal from './AddModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash ,faCheckCircle, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 import UpdateModal from './UpdateModal';
 
 export default function StudentList({ departments }) {
@@ -63,14 +63,30 @@ export default function StudentList({ departments }) {
         },
         { name: 'Gender', selector: row => row.gender, sortable: true, width: '90px' },
         {
+            name: "Status",
+            cell: (row) => (
+              row.status === 1 ? (
+                <span className="badge bg-success rounded p-1 text-white whitespace-nowrap">
+
+                  Active
+                </span>
+              ) : (
+                <span className="badge bg-danger rounded p-1 text-white whitespace-nowrap">
+                  Deactivated
+                </span>
+              )
+            ),
+        },
+        {
             name: 'Actions',
             cell: (row) => (
                 <div className="flex space-x-2">
                     <button onClick={() => handleEdit(row)} className="text-blue-500">
                         <FontAwesomeIcon icon={faEdit} />
                     </button>
-                    <button onClick={() => handleDelete(row.id)} className="text-red-500">
-                        <FontAwesomeIcon icon={faTrash} />
+
+                    <button onClick={() => handleDelete(row.id,(row.status ==1)? 'deactivate':'activate')} className="text-red-500">
+                        <FontAwesomeIcon icon={(row.status == 1)? faTimesCircle:faCheckCircle} />
                     </button>
                 </div>
             ),
@@ -84,12 +100,13 @@ export default function StudentList({ departments }) {
         toggleUpdateModal();
     }
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id,status) => {
+        console.log(status)
         // Add delete confirmation and API call here
-        const confirmed = window.confirm('Are you sure you want to delete this student?');
+        const confirmed = window.confirm(`Are you sure you want to ${status} this student?`);
         if (confirmed) {
             try {
-                await axios.delete(`/students/${id}`);
+                await axios.get(`/students/${id}/delete`);
                 fetchData(); // Refresh the table data
                 displayAlert('Student successfully deleted!', 'success');
             } catch (error) {

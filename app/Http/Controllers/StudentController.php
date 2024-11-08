@@ -74,5 +74,10 @@ class StudentController extends Controller
 
          }
     }
+    public function update_status($id){
+        $student = Student::find($id);
+        $student->status = ($student->status == 1)?  0: 1;
+        $student->save();
+    }
 
 }
