@@ -26,13 +26,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/students', [StudentController::class, 'list'])->name('Students');
-    Route::get('/students/datatable', [StudentController::class, 'student_datatable']);
+    Route::get('/students/datatable', [StudentController::class, 'datatable']);
     Route::post('/students/record', [StudentController::class, 'store']);
     Route::put('/students/{id}/update', [StudentController::class, 'update']);
-
     Route::get('/students/{id}/delete', [StudentController::class, 'update_status']);
 
     Route::get('/departments', [DepartmentController::class, 'list'])->name('Departments');
+    Route::post('/department/record', [DepartmentController::class, 'store']);
+    Route::put('/department/{id}/update', [DepartmentController::class, 'update']);
+    Route::get('/department/datatable', [DepartmentController::class, 'datatable']);
+    Route::get('/department/{id}/delete', [DepartmentController::class, 'update_status']);
 });
 
 require __DIR__.'/auth.php';

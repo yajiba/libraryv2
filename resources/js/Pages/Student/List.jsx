@@ -6,9 +6,12 @@ import useFetchData from '@/hooks/useFetchData';
 import useAlert from '@/hooks/useAlert';
 import useSubmit from '@/hooks/useSubmit';
 import AddModal from './AddModal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash ,faCheckCircle, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 import UpdateModal from './UpdateModal';
+import Actions from '@/Components/Actions';
+import StatusBadge from '@/Components/StatusBadge';
+import { handleDelete } from '@/hooks/handleDelete';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function StudentList({ departments }) {
     const { data, loading, fetchData } = useFetchData('/students/datatable');
@@ -16,7 +19,7 @@ export default function StudentList({ departments }) {
     const { showAlert, msg, bg, displayAlert } = useAlert();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-    const [selectedStudent, setSelectedStudent] = useState(null);
+    const [selectedData, setSelectedData] = useState(null);
 
     const toggleAddModal = () => {
         setIsAddModalOpen(!isAddModalOpen)
@@ -26,7 +29,7 @@ export default function StudentList({ departments }) {
     const toggleUpdateModal = () => setIsUpdateModalOpen(!isUpdateModalOpen);
     const { formData, handleSubmit, handleChange: handleInputChange } = useSubmit(fetchData, toggleAddModal, displayAlert, '/students/record', "POST");
     // For Update
-   const updateUrl = selectedStudent ? `/students/${selectedStudent.id}/update` : '';
+    const updateUrl = selectedData ? `/students/${selectedData.id}/update` : '';
     const { formData: updateFormData, setFormData: setUpdateFormData, handleSubmit: handleUpdateSubmit, handleChange: handleUpdateInputChange } = useSubmit(
         fetchData,
         toggleUpdateModal,
@@ -46,7 +49,7 @@ export default function StudentList({ departments }) {
         { name: 'ID', selector: row => row.id, sortable: true, width: '60px' },
         { name: 'First Name', selector: row => row.first_name, sortable: true },
         { name: 'Last Name', selector: row => row.last_name, sortable: true },
-        { name: 'Middle Initial', selector: row => row.middle_name, sortable: true },
+        { name: 'Middle Name', selector: row => row.middle_name, sortable: true },
         { name: 'Email', selector: row => row.email, sortable: true, width: '250px' },
         { name: 'Department', selector: row => row.department ? row.department.name : 'N/A', sortable: true, width: '115px' },
         {
@@ -65,61 +68,37 @@ export default function StudentList({ departments }) {
         {
             name: "Status",
             cell: (row) => (
-              row.status === 1 ? (
-                <span className="badge bg-success rounded p-1 text-white whitespace-nowrap">
-
-                  Active
-                </span>
-              ) : (
-                <span className="badge bg-danger rounded p-1 text-white whitespace-nowrap">
-                  Deactivated
-                </span>
-              )
+                <StatusBadge row={row} />
             ),
         },
         {
             name: 'Actions',
             cell: (row) => (
-                <div className="flex space-x-2">
-                    <button onClick={() => handleEdit(row)} className="text-blue-500">
-                        <FontAwesomeIcon icon={faEdit} />
-                    </button>
-
-                    <button onClick={() => handleDelete(row.id,(row.status ==1)? 'deactivate':'activate')} className="text-red-500">
-                        <FontAwesomeIcon icon={(row.status == 1)? faTimesCircle:faCheckCircle} />
-                    </button>
-                </div>
+                <Actions
+                    row={row}
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                    fetchData={fetchData}
+                    displayAlert={displayAlert}
+                    url={`/students/${row.id}/delete`}
+                />
             ),
             width: '90px'
         },
 
     ];
     const handleEdit = (row) => {
-        setSelectedStudent(row); // Set the student data for editing
+        setSelectedData(row); // Set the student data for editing
         setUpdateFormData(row); // Load the selected student data into updateFormData
         toggleUpdateModal();
     }
 
-    const handleDelete = async (id,status) => {
-        console.log(status)
-        // Add delete confirmation and API call here
-        const confirmed = window.confirm(`Are you sure you want to ${status} this student?`);
-        if (confirmed) {
-            try {
-                await axios.get(`/students/${id}/delete`);
-                fetchData(); // Refresh the table data
-                displayAlert('Student successfully deleted!', 'success');
-            } catch (error) {
-                displayAlert('An error occurred while deleting the student', 'error');
-            }
-        }
-    };
 
     return (
         <AuthenticatedLayout>
             <Head title="Students" />
             <div className="">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div className="mx-auto ">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
                             <div className='flex justify-between'>
@@ -132,10 +111,10 @@ export default function StudentList({ departments }) {
                                     style={{ marginBottom: '10px', padding: '5px' }}
                                 />
                                 <button
-                                    className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-2 text-center text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                                    className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-2 text-center text-white hover:bg-opacity-90 "
                                     onClick={toggleAddModal}
                                 >
-                                    <i className="mdi mdi-account-plus menu-icon"></i> Add Student
+                                     <FontAwesomeIcon icon={faPlus} /> Add Student
                                 </button>
                             </div>
                             <AddModal
@@ -163,7 +142,8 @@ export default function StudentList({ departments }) {
 
 
                             {loading ? (
-                                <p className='flex justify-center'>Loading...</p>
+                                <div className="m-auto h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent">
+                                </div>
                             ) : (
                                 <DataTable
                                     className='w-full table-auto'

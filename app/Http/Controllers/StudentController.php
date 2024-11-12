@@ -17,7 +17,7 @@ class StudentController extends Controller
             ['departments' => $data]
         );
     }
-    public function student_datatable(){
+    public function datatable(){
         $data = Student::with('department')->get();
         return response()->json($data);
     }
